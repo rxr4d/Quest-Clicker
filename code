@@ -17,20 +17,29 @@
 
   <div id="progress-text">Quest Progress: 0 out of 5</div>
 
+  <h2 style="font-size: 1.5em;">Upgrades:</h2>
+
+  <p>Bigger Bag (+2 needed progress, +1 click power)</p>
+
+  <button id="upgrade-button">Cost: 20</button>
+
 <script>
   const clickButton = document.getElementById("click-button");
   const progressBar = document.getElementById("progress-bar");
   const progressText = document.getElementById("progress-text");
   const questsElement = document.getElementById("quests");
   const powerElement = document.getElementById("power");
+  const upgradeButton = document.getElementById("upgrade-button");
 
   let progress = 0;
   let quests = 0;
   let power = 1;
+  let clickpower = 1
   let neededProgress = 5;
+  let cost1 = 20;
 
   clickButton.addEventListener("click", () => {
-    progress += power;
+    progress += clickpower;
     progressBar.style.width = `${progress / neededProgress * 100}%`;
     progressText.textContent = `Quest Progress: ${progress} out of ${neededProgress}`;
 
@@ -40,6 +49,16 @@
       questsElement.textContent = `Quests: ${quests}`;
       progressBar.style.width = "0%";
       progressText.textContent = `Quest Progress: ${progress} out of ${neededProgress}`;
+    }
+  });
+
+  upgradeButton.addEventListener("click", () => {
+    if (quests >= cost1) {
+      quests -= cost1;
+      clickpower += 1;
+      neededProgress += 2;
+      cost1 = Math.round(cost1 * 1.5);
+      upgradeButton.textContent = `Cost: ${cost1}`;
     }
   });
 </script>
