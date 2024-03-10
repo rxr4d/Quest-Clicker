@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Quest Clicker</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <div id="quests">Quests: 0</div>
+
+  <div id="power">Power: 1</div>
+
+  <button id="click-button">Work on Quest</button>
+
+  <div id="progress-bar"></div>
+
+  <div id="progress-text">Quest Progress: 0 out of 5</div>
+
+<script>
+  const clickButton = document.getElementById("click-button");
+  const progressBar = document.getElementById("progress-bar");
+  const progressText = document.getElementById("progress-text");
+  const questsElement = document.getElementById("quests");
+  const powerElement = document.getElementById("power");
+
+  let progress = 0;
+  let quests = 0;
+  let power = 1;
+  let neededProgress = 5;
+
+  clickButton.addEventListener("click", () => {
+    progress += power;
+    progressBar.style.width = `${progress / neededProgress * 100}%`;
+    progressText.textContent = `Quest Progress: ${progress} out of ${neededProgress}`;
+
+    if (progress >= neededProgress) {
+      quests += power;
+      progress = 0;
+      questsElement.textContent = `Quests: ${quests}`;
+      progressBar.style.width = "0%";
+      progressText.textContent = `Quest Progress: ${progress} out of ${neededProgress}`;
+    }
+  });
+</script>
+</body>
