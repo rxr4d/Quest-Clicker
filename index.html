@@ -19,7 +19,7 @@
 
   <h2 style="font-size: 1.5em;">Upgrades:</h2>
 
-  <p>Bigger Bag (+2 needed progress, +1 click power)</p>
+  <p>Bigger Bag (+1 power, +3 quest length)</p>
 
   <button id="upgrade-button">Cost: 20</button>
 
@@ -36,7 +36,8 @@
   let power = 1;
   let clickpower = 1
   let neededProgress = 5;
-  let cost1 = 20;
+  let cost1 = 25;
+  let bigbag = 0;
 
   clickButton.addEventListener("click", () => {
     progress += clickpower;
@@ -53,12 +54,12 @@
   });
 
   upgradeButton.addEventListener("click", () => {
-    if (quests >= cost1) {
-      quests -= cost1;
-      clickpower += 1;
-      neededProgress += 2;
-      cost1 = Math.round(cost1 * 1.5);
-      upgradeButton.textContent = `Cost: ${cost1}`;
+    if (quests >= 20) {
+      quests -= 20;
+      power += 1;
+      neededProgress += 3;
+      bigbag += 1;
+      upgradeButton.textContent = ``;
     }
   });
 </script>
